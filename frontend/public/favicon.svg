@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer Ring matching the uploaded flame logo -->
+  <path d="M 50 10 A 40 40 0 1 1 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="#FACC15" stroke-width="6" stroke-linecap="round" />
+  
+  <!-- Diagnostic Node Path -->
+  <line x1="30" y1="70" x2="65" y2="35" stroke="#FACC15" stroke-width="4" stroke-linecap="round" />
+  <circle cx="30" cy="70" r="4" fill="#FACC15" />
+  <circle cx="65" cy="35" r="4" fill="#FACC15" />
+  
+  <!-- Classic Flame Structure -->
+  <path d="M 50 20 C 35 35 25 55 40 75 C 65 65 60 45 60 35 C 60 25 50 20 50 20 Z" fill="#FACC15"/>
+</svg>

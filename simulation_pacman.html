@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#00201d",
+                    "on-background": "#dee3ea",
+                    "tertiary": "#ffcdc9",
+                    "on-primary-fixed": "#2b1700",
+                    "tertiary-fixed-dim": "#ffb3ae",
+                    "surface-variant": "#30353b",
+                    "inverse-on-surface": "#2c3136",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#71d7cd",
+                    "on-surface-variant": "#d8c3b0",
+                    "outline": "#a08e7c",
+                    "inverse-primary": "#875200",
+                    "on-primary": "#482900",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#003733",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#8ef4e9",
+                    "primary-container": "#ffab40",
+                    "primary": "#ffd09f",
+                    "surface-bright": "#353a3f",
+                    "background": "#0f1419",
+                    "surface-container-highest": "#30353b",
+                    "on-secondary-container": "#00302c",
+                    "outline-variant": "#534435",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "surface-container-lowest": "#0a0f14",
+                    "tertiary-container": "#ffa59f",
+                    "surface-dim": "#0f1419",
+                    "on-tertiary": "#68000c",
+                    "primary-fixed-dim": "#ffb866",
+                    "on-tertiary-fixed-variant": "#930015",
+                    "surface-container-high": "#252a30",
+                    "on-tertiary-fixed": "#410004",
+                    "surface": "#0f1419",
+                    "secondary": "#71d7cd",
+                    "on-primary-container": "#6e4200",
+                    "surface-tint": "#ffb866",
+                    "on-surface": "#dee3ea",
+                    "on-primary-fixed-variant": "#673d00",
+                    "secondary-container": "#32a097",
+                    "surface-container-low": "#171c21",
+                    "primary-fixed": "#ffddba",
+                    "inverse-surface": "#dee3ea",
+                    "on-tertiary-container": "#9d0017",
+                    "tertiary-fixed": "#ffdad7",
+                    "surface-container": "#1b2025"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Refined Pac-Man Pellet Pattern */
+        .pacman-dots {
+            background-image: radial-gradient(circle, rgba(255, 208, 159, 0.08) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f1419; }
+        ::-webkit-scrollbar-thumb { background: #252a30; border-radius: 10px; }
+        .glass-panel {
+            background: rgba(21, 27, 34, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .ambient-glow-primary {
+            box-shadow: 0 0 60px -10px rgba(255, 208, 159, 0.03);
+        }
+        .pacman-active-indicator {
+            clip-path: polygon(100% 0, 100% 100%, 0% 100%, 0% 50%, 0% 0%);
+        }
+        /* Circle motif for data points */
+        .dot-marker {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #ffd09f;
+            box-shadow: 0 0 8px #ffab40;
+        }
+    </style>
+</head>
+<body class="bg-[#0f1419] text-on-background font-body selection:bg-primary/30 antialiased overflow-x-hidden">
+<!-- SideNavBar Component -->
+<aside class="fixed left-0 top-0 h-full w-20 md:w-64 border-r border-white/5 bg-[#0f1419] flex flex-col py-8 z-50">
+<div class="px-8 mb-12">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xl font-extrabold tracking-tighter text-[#ffd09f] font-headline uppercase">Sentinel</span>
+</div>
+<div class="text-[10px] tracking-[0.2em] uppercase text-[#ffd09f]/40 mt-1.5 font-bold font-label">Neural Grid</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="group flex items-center gap-4 px-8 py-4 text-slate-500 hover:text-slate-200 transition-all duration-300 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform" data-icon="dashboard">dashboard</span>
+<span class="hidden md:block text-[10px] tracking-widest uppercase font-bold font-label">Command</span>
+</a>
+<a class="group flex items-center gap-4 px-8 py-4 text-slate-500 hover:text-slate-200 transition-all duration-300 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform" data-icon="security">security</span>
+<span class="hidden md:block text-[10px] tracking-widest uppercase font-bold font-label">Risk Matrix</span>
+</a>
+<a class="group flex items-center gap-4 px-8 py-4 text-slate-500 hover:text-slate-200 transition-all duration-300 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform" data-icon="settings_input_component">settings_input_component</span>
+<span class="hidden md:block text-[10px] tracking-widest uppercase font-bold font-label">Ops Hub</span>
+</a>
+<a class="flex items-center gap-4 px-8 py-4 text-[#ffd09f] font-semibold border-r-4 border-primary bg-primary/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="psychology">psychology</span>
+<span class="hidden md:block text-[10px] tracking-widest uppercase font-bold font-label">Simulation</span>
+</a>
+</nav>
+<div class="mt-auto px-8">
+<div class="w-10 h-10 rounded-full bg-[#1f2730] border border-white/10 flex items-center justify-center overflow-hidden hover:border-primary/50 transition-colors cursor-pointer">
+<img alt="Sentinel Watch Logo" class="w-8 h-8 opacity-80" data-alt="abstract geometric logo representing intelligence and security with sharp angular shapes in gold and charcoal tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi7Z4XtzDPC2h8k1-17UCwDNA2MrTrCvR3rUpEmupp47cMVLbiWzuw6EnRL3bKFb3tPqaHKOz710mV0NoPoXqxPePE62M4tGiDvhX1bW8yb78LD-Wvoi7jiI3aMe5jMh-MGkZgV5vDRt2TaxT0w365IoNX4tgu7sRnb6vo_eacjKCPi6NlZZw3ujRYxAhtB-c3MQqFeAtVBa6-ccWmQDGWNcrHUI-OYJe7RBILhs6-YQEnMUZemrRIXJf0lnJ3hOS0nWw8_WlNCQ8"/>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-0 h-16 bg-[#0f1419]/80 backdrop-blur-xl z-40 flex justify-between items-center px-8 ml-20 md:ml-64 border-b border-white/5">
+<div class="flex items-center gap-6">
+<h1 class="text-sm font-bold font-headline tracking-widest uppercase text-primary/80">Alpha-7 Simulation</h1>
+<div class="h-3 w-[1px] bg-white/10"></div>
+<span class="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Strategic Layer</span>
+</div>
+<div class="flex items-center gap-8">
+<div class="relative group hidden lg:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-sm">search</span>
+<input class="bg-[#151b22] border-none rounded-full py-1.5 pl-10 pr-4 text-[10px] w-56 focus:ring-1 focus:ring-primary/40 transition-all font-bold tracking-wider" placeholder="SCAN DATABASE..." type="text"/>
+</div>
+<div class="flex items-center gap-5 text-slate-500">
+<button class="hover:text-primary transition-colors material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</button>
+<button class="hover:text-primary transition-colors material-symbols-outlined text-lg relative" data-icon="notifications">
+                    notifications
+                    <span class="absolute top-0 right-0 w-1.5 h-1.5 bg-primary rounded-full"></span>
+</button>
+<button class="hover:text-primary transition-colors material-symbols-outlined text-lg" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-20 md:ml-64 pt-24 p-10 min-h-screen pacman-dots relative">
+<div class="grid grid-cols-12 gap-10 h-full max-w-[1600px] mx-auto">
+<!-- Left: Scenario Controls -->
+<section class="col-span-12 xl:col-span-3 flex flex-col gap-8">
+<div class="bg-[#151b22] rounded-2xl p-8 ambient-glow-primary border border-white/5">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline text-[10px] font-extrabold uppercase tracking-[0.2em] text-primary">Parameters</h2>
+<span class="w-1.5 h-1.5 rounded-full bg-primary/30"></span>
+</div>
+<div class="space-y-10">
+<!-- Station Management -->
+<div class="space-y-5">
+<label class="text-[10px] font-bold tracking-widest text-slate-500 flex items-center justify-between uppercase">
+                                Grid Units
+                                <span class="text-primary font-mono">14 / 20</span>
+</label>
+<div class="flex gap-3">
+<button class="flex-1 bg-[#1f2730] hover:bg-[#2a3440] py-4 rounded-xl flex flex-col items-center gap-2 transition-all border border-white/5">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="add">add</span>
+</div>
+<span class="text-[9px] font-bold tracking-widest uppercase text-slate-400">Deploy</span>
+</button>
+<button class="flex-1 bg-[#1f2730] hover:bg-[#2a3440] py-4 rounded-xl flex flex-col items-center gap-2 transition-all border border-white/5">
+<div class="w-8 h-8 rounded-full bg-slate-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500 text-sm" data-icon="remove">remove</span>
+</div>
+<span class="text-[9px] font-bold tracking-widest uppercase text-slate-400">Recall</span>
+</button>
+</div>
+</div>
+<!-- Inspection Frequency -->
+<div class="space-y-5">
+<div class="flex justify-between items-center">
+<label class="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Sweep Frequency</label>
+<span class="text-[10px] font-mono font-bold text-secondary uppercase">Bi-Weekly</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-1.5 bg-[#1f2730] rounded-full appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+</div>
+<!-- Resource Allocation -->
+<div class="space-y-5">
+<label class="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Aerial Priority</label>
+<div class="flex items-center p-1 bg-[#0f1419] rounded-xl border border-white/5">
+<button class="flex-1 py-2.5 text-[9px] font-bold tracking-widest rounded-lg bg-primary text-on-primary shadow-lg transition-all uppercase">High</button>
+<button class="flex-1 py-2.5 text-[9px] font-bold tracking-widest text-slate-500 uppercase hover:text-slate-300 transition-colors">Mid</button>
+<button class="flex-1 py-2.5 text-[9px] font-bold tracking-widest text-slate-500 uppercase hover:text-slate-300 transition-colors">Low</button>
+</div>
+</div>
+<!-- Run Simulation Button -->
+<button class="w-full py-5 mt-4 bg-gradient-to-r from-[#ffab40] to-[#ffd09f] text-[#2b1700] font-headline font-extrabold text-[11px] tracking-[0.2em] rounded-xl shadow-[0_10px_30px_-10px_rgba(255,171,64,0.3)] hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-3 uppercase">
+<span class="material-symbols-outlined text-base" data-icon="bolt">bolt</span>
+                            Initiate Sequence
+                        </button>
+</div>
+</div>
+<!-- Historical Baseline dots -->
+<div class="bg-[#151b22]/40 rounded-2xl p-8 border border-white/5">
+<h3 class="text-[9px] font-extrabold uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
+<span class="w-1 h-1 rounded-full bg-slate-500"></span>
+                        Baselines
+                    </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2.5 border-b border-white/5">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">2023 Cycles</span>
+<span class="text-[10px] font-mono text-primary">1.2k pts</span>
+</div>
+<div class="flex justify-between items-center py-2.5 border-b border-white/5">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Resp. Delay</span>
+<span class="text-[10px] font-mono text-primary">14.2m</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Center/Right: Results Visualization -->
+<section class="col-span-12 xl:col-span-6 flex flex-col gap-10">
+<!-- Main Visualizer -->
+<div class="flex-1 relative bg-[#151b22] rounded-3xl overflow-hidden border border-white/5 min-h-[500px] shadow-2xl">
+<div class="absolute inset-0 opacity-50">
+<img alt="Fire Risk Visualization Map" class="w-full h-full object-cover grayscale brightness-75 contrast-125" data-alt="top down satellite view of a mountainous terrain with glowing amber heatmap overlays and vector lines connecting strategic nodes dark ui aesthetic" data-location="Northern Rockies" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBodH4re_DIKLBBeEN-wMYbaxzaHd3zdmZfGvt3Vqt3TDkGXBYOHisVd8v5EkuAvIgl7Y-lAcf9zbg_Xju-z33DfH_5pcTkoPP4_gkVWMc9XZOvgertODK6cFe55490vRxifA81C5lMOA_CH_eD94WxcELKA1hCrsPFrEZQug-jaJWc-2-I0pIVZL0p38euqu4Gw5dm00Yz2DhuRWoM-qRCgoJ8ak9QeiPYthpPUDH1DgzfpiRNEgczxLPpVCE1R7jUKCPH_OPVLmo"/>
+</div>
+<!-- Circular Overlay Metrics -->
+<div class="absolute top-8 left-8 flex gap-5">
+<div class="glass-panel p-5 rounded-2xl border border-white/10 flex flex-col items-center">
+<div class="text-[9px] font-extrabold text-slate-500 uppercase tracking-[0.2em] mb-2">Delta</div>
+<div class="text-2xl font-headline font-bold text-secondary">-18.4%</div>
+<div class="w-1 h-1 rounded-full bg-secondary mt-2"></div>
+</div>
+<div class="glass-panel p-5 rounded-2xl border border-white/10 flex flex-col items-center">
+<div class="text-[9px] font-extrabold text-slate-500 uppercase tracking-[0.2em] mb-2">Risk Mit.</div>
+<div class="text-2xl font-headline font-bold text-primary">+32.1%</div>
+<div class="w-1 h-1 rounded-full bg-primary mt-2"></div>
+</div>
+</div>
+<!-- Legend with Dot motif -->
+<div class="absolute bottom-8 right-8 glass-panel py-4 px-6 rounded-2xl border border-white/10">
+<div class="flex items-center gap-4 mb-2">
+<span class="dot-marker animate-pulse"></span>
+<span class="text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface">Sequence Live</span>
+</div>
+<div class="text-[9px] font-bold text-slate-500 tracking-widest uppercase">Iter: 1,402 / 5,000</div>
+</div>
+</div>
+<!-- Secondary Row -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<div class="bg-[#151b22] rounded-2xl p-8 border border-white/5 relative overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase">Predictive Spread</h4>
+<span class="material-symbols-outlined text-primary text-sm">grain</span>
+</div>
+<div class="h-28 flex items-end gap-3">
+<div class="flex-1 bg-[#1f2730] rounded-full h-[40%] transition-all hover:h-[50%]"></div>
+<div class="flex-1 bg-[#1f2730] rounded-full h-[60%] transition-all hover:h-[70%]"></div>
+<div class="flex-1 bg-[#1f2730] rounded-full h-[30%] transition-all hover:h-[40%]"></div>
+<div class="flex-1 bg-primary/40 rounded-full h-[80%] border-t-2 border-primary shadow-[0_0_15px_rgba(255,208,159,0.2)]"></div>
+<div class="flex-1 bg-primary rounded-full h-[95%] shadow-[0_0_20px_rgba(255,208,159,0.3)]"></div>
+<div class="flex-1 bg-[#1f2730] rounded-full h-[50%]"></div>
+</div>
+</div>
+<div class="bg-[#151b22] rounded-2xl p-8 border border-white/5">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase">Efficiency</h4>
+<span class="material-symbols-outlined text-secondary text-sm">radar</span>
+</div>
+<div class="flex items-center justify-center h-28">
+<div class="relative w-24 h-24">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-[#1f2730]" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-secondary" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="70" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<span class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-sm font-headline font-bold">72%</span>
+<span class="w-1 h-1 rounded-full bg-secondary mt-1"></span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: AI Assistant Panel -->
+<section class="col-span-12 xl:col-span-3 flex flex-col h-full">
+<div class="flex-1 bg-[#151b22] rounded-3xl flex flex-col border border-white/5 relative overflow-hidden">
+<!-- Subtle pellet separator -->
+<div class="absolute inset-x-0 bottom-32 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+<div class="p-8 border-b border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h3 class="text-xs font-headline font-extrabold uppercase tracking-widest">Sentinel Core</h3>
+<div class="text-[9px] text-secondary flex items-center gap-1.5 uppercase font-extrabold tracking-[0.2em] mt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_#71d7cd]"></span> 
+                                    Synchronized
+                                </div>
+</div>
+</div>
+</div>
+<!-- Chat/Query Display -->
+<div class="flex-1 p-8 space-y-8 overflow-y-auto">
+<div class="space-y-3">
+<div class="text-[9px] font-extrabold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-1 h-1 rounded-full bg-slate-500/50"></span>
+                                Inquiry Trace
+                            </div>
+<p class="text-[11px] text-slate-400 font-medium leading-relaxed italic">"Simulate Northeast re-deployment during Grade 3 humidity shifts."</p>
+</div>
+<div class="bg-[#0f1419] p-6 rounded-2xl border-l-4 border-primary space-y-4 relative overflow-hidden">
+<div class="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-primary/20"></div>
+<div class="text-[9px] font-extrabold text-primary uppercase tracking-[0.2em]">Neural Output</div>
+<p class="text-[11px] text-slate-300 leading-relaxed">
+                                Deployment to Northeast corridor reduces critical latency by <span class="text-primary font-bold">4.2m</span> in high-density timber zones.
+                                <br/><br/>
+<span class="text-tertiary">Notice:</span> 1-95 corridor will experience a <span class="font-bold">12% coverage deficit</span>. Recommending secondary unit swap.
+                            </p>
+</div>
+<div class="space-y-5">
+<div class="text-[9px] font-extrabold text-slate-500 uppercase tracking-[0.2em]">Pattern Scans</div>
+<div class="flex flex-wrap gap-2.5">
+<button class="text-[9px] font-bold uppercase tracking-widest bg-[#1f2730] hover:bg-primary/20 hover:text-primary px-4 py-2 rounded-lg border border-white/5 transition-all">Bottlenecks</button>
+<button class="text-[9px] font-bold uppercase tracking-widest bg-[#1f2730] hover:bg-primary/20 hover:text-primary px-4 py-2 rounded-lg border border-white/5 transition-all">Weather Scan</button>
+<button class="text-[9px] font-bold uppercase tracking-widest bg-[#1f2730] hover:bg-primary/20 hover:text-primary px-4 py-2 rounded-lg border border-white/5 transition-all">Flow Map</button>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-8 mt-auto bg-[#0f1419]/50">
+<div class="relative group">
+<textarea class="w-full bg-[#1f2730] border-white/5 rounded-2xl p-5 text-[11px] font-medium resize-none focus:ring-1 focus:ring-primary/40 focus:bg-[#252d38] placeholder:text-slate-600 transition-all leading-relaxed" placeholder="ENGAGE SENTINEL CORE..." rows="3"></textarea>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-primary text-[#2b1700] rounded-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-lg" data-icon="east">east</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>
