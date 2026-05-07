@@ -13,6 +13,10 @@ The platform leverages advanced mapping (Leaflet, React Globe) and generative AI
   - **Frontend:** Next.js 16, React 19, Tailwind CSS v4, and Framer Motion for a sleek, responsive, and highly interactive user interface.
   - **Backend:** Lightweight FastAPI server in Python 3.11+, providing lightning-fast API responses and robust backend logic.
 
+## 🌟 Highlight: Spatial Query Optimizer
+To demonstrate our architectural roadmap and scaling strategy, we have included an experimental **Spatial Query Optimizer** module (`backend/app/services/query_optimizer.py`). 
+This module highlights how the Fire Risk Engine plans to intercept, cache, and automatically rewrite complex geospatial bounds-queries into partition-pruned R-Tree searches. While isolated for documentation purposes, it reflects our commitment to enterprise-scale performance and database cost-optimization.
+
 ## Project Structure
 - `/frontend`: Next.js web application.
 - `/backend`: FastAPI Python server containing risk engine logic, LLM integrations, and API endpoints.
