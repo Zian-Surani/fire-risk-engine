@@ -17,12 +17,20 @@ The platform leverages advanced mapping (Leaflet, React Globe) and generative AI
 To demonstrate our architectural roadmap and scaling strategy, we have included an experimental **Spatial Query Optimizer** module (`backend/app/services/query_optimizer.py`). 
 This module highlights how the Fire Risk Engine plans to intercept, cache, and automatically rewrite complex geospatial bounds-queries into partition-pruned R-Tree searches. While isolated for documentation purposes, it reflects our commitment to enterprise-scale performance and database cost-optimization.
 
+## 🌟 Highlight: Executioner Planner
+Additionally, we have included an experimental **Executioner Planner** module (`backend/app/services/executionerplanner.py`).
+When a critical fire risk is identified, detecting it is only the first step. The Executioner Planner is an autonomous orchestrator designed to automatically synthesize action plans and trigger responses across multiple emergency subsystems (e.g., dispatching drones, triggering automated SOS alerts, and notifying the fire department). This highlights our vision for fully automated, end-to-end disaster mitigation.
+
 ## Project Structure
 - `/frontend`: Next.js web application.
 - `/backend`: FastAPI Python server containing risk engine logic, LLM integrations, and API endpoints.
 
 ## HackBricks Hackathon - MIT Bengaluru
 This project was conceptualized and built for the **HackBricks Hackathon** hosted by MIT Bengaluru. It embodies innovation in disaster management technology, providing practical and scalable solutions for fire risk prevention.
+
+### Makers & Collaborators
+- **Zian Rajeshkumar Surani**
+- **Sidharth P Nair**
 
 ## Getting Started
 
